@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Firma de Contrato</title>
+  <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+  <h1>Subir Contrato y Firmar</h1>
+
+  <form id="form" method="post" action="/upload/" enctype="multipart/form-data">
+    <label>Selecciona contrato PDF:</label><br />
+    <input type="file" name="contract" accept="application/pdf" required /><br><br>
+
+    <label>Firma aquí:</label><br />
+    <canvas id="canvas" width="400" height="200"></canvas><br>
+    <button type="button" onclick="clearCanvas()">Borrar firma</button><br><br>
+
+    <input type="hidden" name="signature_data" id="signature_data">
+    <button type="submit" onclick="saveSignature()">Enviar</button>
+  </form>
+
+  {% if message %}
+    <p><strong>{{ message }}</strong></p>
+    <p><a href="{{ contract_url }}" target="_blank">Ver contrato</a></p>
+    <p><a href="{{ signature_url }}" target="_blank">Ver firma</a></p>
+  {% endif %}
+
+  <script src="/static/script.js"></script>
+</body>
+</html>
